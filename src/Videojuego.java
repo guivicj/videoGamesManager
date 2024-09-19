@@ -108,7 +108,7 @@ public abstract class Videojuego {
 
     @Override
     public String toString() {
-        return String.format(Locale.ENGLISH, "%-30s %-15s %.2f %s", name, plat, cost, genr);
+        return String.format(Locale.ENGLISH, "%-30s %-16s %.2f %s", name, plat, cost, genr);
     }
 
     public abstract double calculateCost();

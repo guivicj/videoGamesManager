@@ -2,7 +2,7 @@ import java.util.Locale;
 
 public class VideojuegoDigital extends Videojuego {
 
-    private final double disc;
+    private double disc;
     private static final double DEF_DISC = 0.15;
 
     public VideojuegoDigital(String name, String plat, double cost, double disc, Genero genero) {

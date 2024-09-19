@@ -36,7 +36,6 @@ public class VideojuegoFisico extends Videojuego {
         return send >= 0.0;
     }
 
-
     public double getSend() {
         return send;
     }

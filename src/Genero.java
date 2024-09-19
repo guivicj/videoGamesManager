@@ -7,3 +7,4 @@ public enum Genero {
     ESTRATEGIA,
     RPG
 }
+
