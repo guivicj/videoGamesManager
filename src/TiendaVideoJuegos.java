@@ -12,6 +12,7 @@ public class TiendaVideoJuegos {
         Videojuego videojuego2 = new VideojuegoDigital(
                 "Thi Legend of Zelda", "playstation", 50.0, 5.0, Genero.ACCION);
         System.out.println(videojuego2);
+
     }
 
 }

@@ -2,7 +2,6 @@ import java.util.Locale;
 
 public class VideojuegoFisico extends Videojuego {
     private double send;
-    private Genero genero;
 
     private static final double DEF_SEND = 0.0;
 
@@ -13,23 +12,6 @@ public class VideojuegoFisico extends Videojuego {
         } else {
             this.send = DEF_SEND;
         }
-        if (validateGenero(genero)) {
-            this.genero = genero;
-        } else {
-            this.genero = Genero.INDIE;
-        }
-    }
-
-    private boolean validateGenero(Genero genero) {
-        boolean generoOK;
-        try {
-            Genero g = Genero.valueOf(genero.toString());
-            generoOK = true;
-        } catch (Exception e) {
-            generoOK = false;
-        }
-
-        return generoOK;
     }
 
     private boolean validateSend(double send) {
