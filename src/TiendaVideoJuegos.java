@@ -1,18 +1,16 @@
+import java.util.Properties;
+
 public class TiendaVideoJuegos {
 
     public static void main(String[] args) {
-        System.out.println(
-                """
-                NOMBRE                         CONSOLA         PRECIO GÉNERO TOTAL
-                ============================== =============== ====== ====== =====""");
-        Videojuego videojuego = new VideojuegoFisico(
-                "Thi Legend of Zelda", "playstation", 50.0, 5.0, Genero.ACCION);
-        System.out.println(videojuego);
 
-        Videojuego videojuego2 = new VideojuegoDigital(
-                "Thi Legend of Zelda", "playstation", 50.0, 5.0, Genero.ACCION);
-        System.out.println(videojuego2);
+        Properties prp = new Properties();
+        Platform p = new Platform();
+        Videojuego v = new VideojuegoDigital("The Legend Of Zelda", Console.NINTENDO, 50, 0.15, Genero.ACCION);
+        p.loadCSV(prp, String.valueOf(v.plat));
 
+
+
+        p.saveCSV(prp, String.valueOf(v.plat));
     }
-
 }

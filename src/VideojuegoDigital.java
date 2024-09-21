@@ -5,7 +5,7 @@ public class VideojuegoDigital extends Videojuego {
     private double disc;
     private static final double DEF_DISC = 0.15;
 
-    public VideojuegoDigital(String name, String plat, double cost, double disc, Genero genero) {
+    public VideojuegoDigital(String name, Console plat, double cost, double disc, Genero genero) {
         super(name, plat, cost, genero);
         if (validateDisc(disc)) {
             this.disc = disc;

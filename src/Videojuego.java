@@ -4,7 +4,7 @@ import java.util.Objects;
 public abstract class Videojuego {
 
     protected String name;
-    protected String plat;
+    protected Console plat;
     protected double cost;
     protected Genero genr;
 
@@ -13,32 +13,19 @@ public abstract class Videojuego {
     private static final String DEF_NAME = "undefined";
     private static final String DEF_PLAT = "undefined";
     private static final double DEF_COST = 0.0;
-    private static final String DEF_GENR = "undefined";
-
-    // Valores Predeterminados
-    private static final String PLAT_PLAY = "playstation";
-    private static final String PLAT_NINT = "nintendo";
-    private static final String PLAT_COMP = "ordenador";
-    private static final String PLAT_XBOX = "xbox";
-
 
     public Videojuego() {
         this.name = DEF_NAME;
-        this.plat = DEF_PLAT;
+        this.plat = Console.COMPUTER;
         this.cost = DEF_COST;
         this.genr = Genero.ACCION;
     }
 
-    public Videojuego(String name, String plat, double cost, Genero genr) {
+    public Videojuego(String name, Console plat, double cost, Genero genr) {
         if (validateName(name)) {
             this.name = name;
         } else {
             this.name = DEF_NAME;
-        }
-        if (validatePlat(plat)) {
-            this.plat = plat;
-        } else {
-            this.plat = DEF_PLAT;
         }
         if (validateCost(cost)) {
             this.cost = cost;
@@ -50,8 +37,8 @@ public abstract class Videojuego {
         } else {
             this.genr = Genero.ACCION;
         }
+        this.plat = plat;
     }
-
 
     public String getName() {
         return name;
@@ -60,16 +47,6 @@ public abstract class Videojuego {
     public void setName(String name) {
         if (validateName(name)) {
             this.name = name;
-        }
-    }
-
-    public String getPlat() {
-        return plat;
-    }
-
-    public void setPlat(String plat) {
-        if (validatePlat(plat)) {
-            this.plat = plat;
         }
     }
 
@@ -95,11 +72,6 @@ public abstract class Videojuego {
 
     private boolean validateName(String name) {
         return name != null && !name.isEmpty();
-    }
-
-    private boolean validatePlat(String plat) {
-        return plat.equalsIgnoreCase(PLAT_PLAY) || plat.equalsIgnoreCase(PLAT_NINT)
-                || plat.equalsIgnoreCase(PLAT_COMP) || plat.equalsIgnoreCase(PLAT_XBOX);
     }
 
     private boolean validateCost(double cost) {

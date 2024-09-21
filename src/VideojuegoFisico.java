@@ -5,7 +5,7 @@ public class VideojuegoFisico extends Videojuego {
 
     private static final double DEF_SEND = 0.0;
 
-    public VideojuegoFisico(String name, String plat, double cost, double send, Genero genero) {
+    public VideojuegoFisico(String name, Console plat, double cost, double send, Genero genero) {
         super(name, plat, cost, genero);
         if (validateSend(send)) {
             this.send = send;
@@ -42,4 +42,6 @@ public class VideojuegoFisico extends Videojuego {
     public String toString() {
         return super.toString() + String.format(Locale.ENGLISH, " %02.2f", calculateCost());
     }
+
+
 }
