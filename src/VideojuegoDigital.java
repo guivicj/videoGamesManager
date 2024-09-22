@@ -2,16 +2,10 @@ import java.util.Locale;
 
 public class VideojuegoDigital extends Videojuego {
 
-    private double disc;
     private static final double DEF_DISC = 0.15;
 
-    public VideojuegoDigital(String name, Console plat, double cost, double disc, Genero genero) {
+    public VideojuegoDigital(String name, Console plat, double cost, Genero genero) {
         super(name, plat, cost, genero);
-        if (validateDisc(disc)) {
-            this.disc = disc;
-        } else {
-            this.disc = DEF_DISC;
-        }
     }
 
     private boolean validateGenero(Genero genero) {
@@ -32,7 +26,7 @@ public class VideojuegoDigital extends Videojuego {
 
     @Override
     public double calculateCost() {
-        return cost - (disc * cost);
+        return cost - (DEF_DISC * cost);
     }
 
     @Override

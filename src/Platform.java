@@ -1,14 +1,13 @@
 import error.JuegoNoCompatibleException;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.Properties;
+import java.io.*;
+import java.util.List;
 
 public class Platform implements IConsole {
 
     private String plat;
+
+    private static final String SEP_CSV = ",";
 
     public Platform() {
         this.plat = Console.COMPUTER.toString();
@@ -38,19 +37,48 @@ public class Platform implements IConsole {
         return plat;
     }
 
-    public void loadCSV(Properties prp, String consola) {
+    public void loadCSV(List<Videojuego> vdj, String consola) {
 
-        try (FileReader fr = new FileReader(consola)) {
-            prp.load(fr);
+        try (FileReader fr = new FileReader(consola); BufferedReader br = new BufferedReader(fr)) {
 
+            String line;
+            do {
+                line = br.readLine();
+
+                try {
+
+                    if (line != null) {
+                        String[] parts = line.split(",");
+
+                        String name = parts[0];
+                        Console plat = Console.valueOf(parts[1]);
+                        double cost = Double.parseDouble(parts[2]);
+                        Genero genr = Genero.valueOf(parts[3]);
+
+                        Videojuego v = new VideojuegoDigital(name, plat, cost, genr);
+
+                        vdj.add(v);
+                    }
+                } catch (Exception e) {
+                    System.out.println("ERROR EN EL FICHERO");
+                }
+            } while (line != null);
         } catch (IOException e) {
             System.out.println("Fichero no Cargado");
         }
     }
 
-    public void saveCSV(Properties prp, String consola) {
+    public void saveCSV(List<Videojuego> vdj, String consola) {
         try (FileWriter fw = new FileWriter(consola)) {
-            prp.store(fw, null);
+
+            for (Videojuego v : vdj) {
+                String line =
+                        v.getName() + SEP_CSV
+                                + v.getPlat().name() + SEP_CSV
+                                + v.getCost() + SEP_CSV
+                                + v.getGenr() + SEP_CSV;
+                fw.write(line + "\n");
+            }
         } catch (IOException e) {
             System.out.println("Fichero no Cargado");
         }

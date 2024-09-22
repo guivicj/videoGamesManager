@@ -1,36 +1,20 @@
 import java.util.Locale;
 
 public class VideojuegoFisico extends Videojuego {
-    private double send;
 
-    private static final double DEF_SEND = 0.0;
+    private static final double DEF_SEND = 3;
 
-    public VideojuegoFisico(String name, Console plat, double cost, double send, Genero genero) {
+    public VideojuegoFisico(String name, Console plat, double cost, Genero genero) {
         super(name, plat, cost, genero);
-        if (validateSend(send)) {
-            this.send = send;
-        } else {
-            this.send = DEF_SEND;
-        }
     }
 
     private boolean validateSend(double send) {
-        return send >= 0.0;
-    }
-
-    public double getSend() {
-        return send;
-    }
-
-    public void setSend(double send) {
-        if (validateSend(send)) {
-            this.send = send;
-        }
+        return send > 1.0;
     }
 
     @Override
     public double calculateCost() {
-        return getCost() + send;
+        return getCost() + DEF_SEND;
     }
 
     @Override

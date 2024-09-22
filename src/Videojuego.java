@@ -4,9 +4,9 @@ import java.util.Objects;
 public abstract class Videojuego {
 
     protected String name;
-    protected Console plat;
+    private Console plat;
     protected double cost;
-    protected Genero genr;
+    private Genero genr;
 
 
     // Valores por Defecto
@@ -16,9 +16,9 @@ public abstract class Videojuego {
 
     public Videojuego() {
         this.name = DEF_NAME;
-        this.plat = Console.COMPUTER;
+        this.setPlat(Console.COMPUTER);
         this.cost = DEF_COST;
-        this.genr = Genero.ACCION;
+        this.setGenr(Genero.ACCION);
     }
 
     public Videojuego(String name, Console plat, double cost, Genero genr) {
@@ -33,11 +33,11 @@ public abstract class Videojuego {
             this.cost = DEF_COST;
         }
         if (genr != null) {
-            this.genr = genr;
+            this.setGenr(genr);
         } else {
-            this.genr = Genero.ACCION;
+            this.setGenr(Genero.ACCION);
         }
-        this.plat = plat;
+        this.setPlat(plat);
     }
 
     public String getName() {
@@ -60,6 +60,22 @@ public abstract class Videojuego {
         }
     }
 
+    public Console getPlat() {
+        return plat;
+    }
+
+    public void setPlat(Console plat) {
+        this.plat = plat;
+    }
+
+    public Genero getGenr() {
+        return genr;
+    }
+
+    public void setGenr(Genero genr) {
+        this.genr = genr;
+    }
+
     @Override
     public boolean equals(Object o) {
         return o instanceof Videojuego v && this.name.equals(v.name);
@@ -80,7 +96,7 @@ public abstract class Videojuego {
 
     @Override
     public String toString() {
-        return String.format(Locale.ENGLISH, "%-30s %-16s %.2f %s", name, plat, cost, genr);
+        return String.format(Locale.ENGLISH, "%-30s %-16s %.2f %s", name, getPlat(), cost, getGenr());
     }
 
     public abstract double calculateCost();
