@@ -5,15 +5,15 @@ import java.util.List;
 
 public class Platform implements IConsole {
 
-    private String plat;
+    private Console plat;
 
     private static final String SEP_CSV = ",";
 
     public Platform() {
-        this.plat = Console.COMPUTER.toString();
+        this.plat = Console.PLAYSTATION;
     }
 
-    public Platform(String plat) {
+    public Platform(Console plat) {
         this.plat = plat;
     }
 
@@ -26,14 +26,18 @@ public class Platform implements IConsole {
     }
 
     public void installGame(Videojuego vdj) throws JuegoNoCompatibleException {
-        System.out.printf("Instalando %s en %s%n", vdj.getName(), getPlataforma());
+        if (vdj.isCompatible(getPlataforma())) {
+            System.out.printf("Instalando %s en %s%n", vdj.getName(), getPlataforma());
+        } else {
+            throw new JuegoNoCompatibleException();
+        }
     }
 
     public void playGame(Videojuego vdj) {
         System.out.printf("Iniciando %s en %s%n", vdj.getName(), getPlataforma());
     }
 
-    public String getPlataforma() {
+    public Console getPlataforma() {
         return plat;
     }
 
@@ -76,9 +80,10 @@ public class Platform implements IConsole {
                         v.getName() + SEP_CSV
                                 + v.getPlat().name() + SEP_CSV
                                 + v.getCost() + SEP_CSV
-                                + v.getGenr() + SEP_CSV;
+                                + v.getGenr();
                 fw.write(line + "\n");
             }
+
         } catch (IOException e) {
             System.out.println("Fichero no Cargado");
         }

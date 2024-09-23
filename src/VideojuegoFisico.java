@@ -17,9 +17,8 @@ public class VideojuegoFisico extends Videojuego {
         return getCost() + DEF_SEND;
     }
 
-    @Override
-    public boolean isCompatible(IConsole console) {
-        return false;
+    public boolean isCompatible(Console console) {
+        return console.equals(getPlat());
     }
 
     @Override

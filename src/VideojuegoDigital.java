@@ -29,9 +29,8 @@ public class VideojuegoDigital extends Videojuego {
         return cost - (DEF_DISC * cost);
     }
 
-    @Override
-    public boolean isCompatible(IConsole console) {
-        return false;
+    public boolean isCompatible(Console console) {
+        return console.equals(getPlat());
     }
 
     @Override

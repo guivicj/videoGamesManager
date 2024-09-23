@@ -9,5 +9,5 @@ public interface IConsole {
 
     void playGame(Videojuego vdj);
 
-    String getPlataforma();
+    Console getPlataforma();
 }

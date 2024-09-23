@@ -96,10 +96,10 @@ public abstract class Videojuego {
 
     @Override
     public String toString() {
-        return String.format(Locale.ENGLISH, "%-30s %-16s %.2f %s", name, getPlat(), cost, getGenr());
+        return String.format(Locale.ENGLISH, "%s %s %f %s", name, getPlat(), cost, getGenr());
     }
 
     public abstract double calculateCost();
 
-    public abstract boolean isCompatible(IConsole console);
+    public abstract boolean isCompatible(Console console);
 }
