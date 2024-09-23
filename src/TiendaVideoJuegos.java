@@ -11,11 +11,17 @@ public class TiendaVideoJuegos {
     static final String archivoCSV = "D:/DAM2/01-Acceso a Datos/GestionVideoJuegos/" + v.getPlat().name() + ".txt";
 
     public static void main(String[] args) {
-        p.loadCSV(vdj, archivoCSV);
-
         p.switchOn();
+        p.loadCSV(vdj, archivoCSV);
         try {
             p.installGame(v);
+            for (int i = 0; i < vdj.size(); i++) {
+                if (!vdj.get(i).equals(v)) {
+                    vdj.add(v);
+                } else {
+                    System.out.println("Juego ya Instalado");
+                }
+            }
         } catch (JuegoNoCompatibleException e) {
             e.getMessage();
         }

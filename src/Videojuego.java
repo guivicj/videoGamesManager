@@ -16,9 +16,9 @@ public abstract class Videojuego {
 
     public Videojuego() {
         this.name = DEF_NAME;
-        this.setPlat(Console.COMPUTER);
+        this.plat = Console.COMPUTER;
         this.cost = DEF_COST;
-        this.setGenr(Genero.ACCION);
+        this.genr = Genero.ACCION;
     }
 
     public Videojuego(String name, Console plat, double cost, Genero genr) {
