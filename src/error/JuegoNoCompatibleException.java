@@ -2,6 +2,6 @@ package error;
 
 public class JuegoNoCompatibleException extends Exception {
     public JuegoNoCompatibleException() {
-        System.out.println("Juego no compatible con la plataforma");
+        System.out.println("ERROR: Juego no compatible");
     }
 }
