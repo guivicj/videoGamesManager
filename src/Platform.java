@@ -10,8 +10,8 @@ public class Platform implements IConsole {
 
     private static final String SEP_CSV = ",";
     VideojuegoDigital v = new VideojuegoDigital("Spiderman", Console.PLAYSTATION, 50, Genero.ACCION);
-    String FILE_CSV = "D:/DAM2/01-Acceso a Datos/GestionVideoJuegos/" + v.getPlat().name() + ".txt";
-    List<Videojuego> LST_VDJ = new ArrayList<>();
+    String archivoCSV = "D:/DAM2/01-Acceso a Datos/GestionVideoJuegos/" + v.getPlat().name() + ".txt";
+    List<Videojuego> vdjList = new ArrayList<>();
 
     public Platform() {
         this.plat = Console.PLAYSTATION;
@@ -23,7 +23,7 @@ public class Platform implements IConsole {
 
     public void switchOn() {
         System.out.printf("Encendiendo %s%n", getPlataforma());
-        loadCSV(LST_VDJ, FILE_CSV);
+        loadCSV(vdjList, archivoCSV);
         try {
             installGame(v);
         } catch (JuegoNoCompatibleException e) {
@@ -33,14 +33,14 @@ public class Platform implements IConsole {
     }
 
     public void switchOff() {
-        saveCSV(LST_VDJ, FILE_CSV);
+        saveCSV(vdjList, archivoCSV);
         System.out.printf("Apagando %s%n", getPlataforma());
     }
 
     public void installGame(Videojuego vdj) throws JuegoNoCompatibleException {
-        if (vdj.isCompatible(getPlataforma()) && !LST_VDJ.contains(vdj)) {
+        if (vdj.isCompatible(getPlataforma()) && !vdjList.contains(vdj)) {
             System.out.printf("Instalando %s en %s%n", vdj.getName(), getPlataforma());
-            LST_VDJ.add(v);
+            vdjList.add(v);
         } else {
             throw new JuegoNoCompatibleException();
         }
