@@ -1,1 +1,1 @@
-Little program for learning the basics of file management as if you have to manage four types of consoles.  
+A small program to learn the basics of file management, simulating the management of four types of consoles.
