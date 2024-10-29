@@ -2,14 +2,16 @@ import java.util.Locale;
 
 public class VideojuegoFisico extends Videojuego {
 
-    private static final double DEF_SEND = 3;
+    private final double DEF_SEND = 3;
+
+    private final GameType gameType = GameType.PHYSICAL;
 
     public VideojuegoFisico(String name, Console plat, double cost, Genero genero) {
         super(name, plat, cost, genero);
     }
 
-    private boolean validateSend(double send) {
-        return send > 1.0;
+    public VideojuegoFisico(String[] gameInArray) {
+        super(gameInArray);
     }
 
     @Override
@@ -23,7 +25,11 @@ public class VideojuegoFisico extends Videojuego {
 
     @Override
     public String toString() {
-        return super.toString() + String.format(Locale.ENGLISH, " %02.2f", calculateCost());
+        return name +
+                "," + getPlat() +
+                "," + cost +
+                "," + getGenr() +
+                "," + gameType + "\n";
     }
 
 

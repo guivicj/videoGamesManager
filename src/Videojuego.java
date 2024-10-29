@@ -9,71 +9,34 @@ public abstract class Videojuego {
     private Genero genr;
 
 
-    // Valores por Defecto
-    private static final String DEF_NAME = "undefined";
-    private static final String DEF_PLAT = "undefined";
-    private static final double DEF_COST = 0.0;
-
-    public Videojuego() {
-        this.name = DEF_NAME;
-        this.plat = Console.COMPUTER;
-        this.cost = DEF_COST;
-        this.genr = Genero.ACCION;
+    public Videojuego(String name, Console plat, double cost, Genero genr) {
+        this.name = name;
+        this.plat = plat;
+        this.cost = cost;
+        this.genr = genr;
     }
 
-    public Videojuego(String name, Console plat, double cost, Genero genr) {
-        if (validateName(name)) {
-            this.name = name;
-        } else {
-            this.name = DEF_NAME;
-        }
-        if (validateCost(cost)) {
-            this.cost = cost;
-        } else {
-            this.cost = DEF_COST;
-        }
-        if (genr != null) {
-            this.setGenr(genr);
-        } else {
-            this.setGenr(Genero.ACCION);
-        }
-        this.setPlat(plat);
+    public Videojuego(String[] line) {
+        this.name = line[0];
+        this.plat = Console.valueOf(line[1]);
+        this.cost = Double.parseDouble(line[2]);
+        this.genr = Genero.valueOf(line[3]);
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        if (validateName(name)) {
-            this.name = name;
-        }
-    }
-
     public double getCost() {
         return cost;
-    }
-
-    public void setCost(double cost) {
-        if (validateCost(cost)) {
-            this.cost = cost;
-        }
     }
 
     public Console getPlat() {
         return plat;
     }
 
-    public void setPlat(Console plat) {
-        this.plat = plat;
-    }
-
     public Genero getGenr() {
         return genr;
-    }
-
-    public void setGenr(Genero genr) {
-        this.genr = genr;
     }
 
     @Override
@@ -84,19 +47,6 @@ public abstract class Videojuego {
     @Override
     public int hashCode() {
         return Objects.hashCode(name);
-    }
-
-    private boolean validateName(String name) {
-        return name != null && !name.isEmpty();
-    }
-
-    private boolean validateCost(double cost) {
-        return cost >= 0;
-    }
-
-    @Override
-    public String toString() {
-        return String.format(Locale.ENGLISH, "%s %s %f %s", name, getPlat(), cost, getGenr());
     }
 
     public abstract double calculateCost();
